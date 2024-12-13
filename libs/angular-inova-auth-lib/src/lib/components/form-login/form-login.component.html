@@ -1,0 +1,34 @@
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <img src="../../assets/inova.svg" class="image">
+    </h2>
+    <form [formGroup]="formGroup" class="ui large form initial segment">
+      <div class="ui stacked">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="Username" formControlName="inovaAuthUsername"
+              (keydown.enter)="!onLoading && login()">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon "></i>
+            <input type="password" [type]="passwordVisible ? 'text' : 'password'" formControlName="inovaAuthPassword"
+              class="form-control" placeholder="Senha" (keydown.enter)="!onLoading && login()" style="padding-right: 35px">
+
+            <span style="position: absolute; right: 10px; top: 12.5px;">
+              <i class="eye icon " (click)="passwordVisible = !passwordVisible" [class.slash]="!passwordVisible">
+              </i>
+            </span>
+          </div>
+        </div>
+        <div [ngClass]="{'loading': onLoading, 'disabled': onLoading}" class="ui fluid large submit red button"
+          (click)="login()">
+          {{buttonText}}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

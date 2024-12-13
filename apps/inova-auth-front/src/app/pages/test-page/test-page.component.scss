@@ -1,0 +1,21 @@
+.top-bar {
+  background-color: #a53030;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.top-bar p {
+  margin: 0;
+  text-align: end;
+}
+
+.centered-elements {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+}

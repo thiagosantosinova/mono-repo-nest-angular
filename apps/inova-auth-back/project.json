@@ -1,0 +1,64 @@
+{
+  "name": "inova-auth-back",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/inova-auth-back/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/inova-auth-back",
+        "main": "apps/inova-auth-back/src/main.ts",
+        "tsConfig": "apps/inova-auth-back/tsconfig.app.json",
+        "assets": ["apps/inova-auth-back/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/inova-auth-back/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "inova-auth-back:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "inova-auth-back:build:development"
+        },
+        "production": {
+          "buildTarget": "inova-auth-back:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/inova-auth-back/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/inova-auth-back/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
